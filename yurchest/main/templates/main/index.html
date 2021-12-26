@@ -3,7 +3,14 @@
 {% block content %}
 
 <div class="container">
-    <h1>Добро пожаловать на сайт Yurchest12</h1>
+    <h1>Статьи : </h1>
+    <ul>
+            {% for art in articles %}
+                <h2>{{art.title}}</h2>
+                <p>{{art.content}}</p>
+                <hr>
+            {% endfor %}
+    </ul>
 </div>
 
 {% endblock %}

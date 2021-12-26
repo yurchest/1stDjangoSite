@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound
+from .models import Article,Comment
 
 menu = [
     {'title': "Главная", 'url_name': 'home'},
@@ -12,8 +13,10 @@ menu = [
 
 
 def index(request):
+    articles    = Article.objects.all()
     context = {
         'menu': menu,
+        'articles': articles,
         'title': 'Главная страница',
     }
     return render(request, 'main/index.html', context=context)
