@@ -8,12 +8,13 @@ menu = [
     {'title': "Str2", 'url_name': 'str2'},
     {'title': "Str3", 'url_name': 'str3'},
     {'title': "О сайте", 'url_name': 'about'},
+    {'title': "Резюме", 'url_name': 'cv'},
 
 ]
 
 
 def index(request):
-    articles    = Article.objects.all()
+    articles = Article.objects.all()
     context = {
         'menu': menu,
         'articles': articles,
@@ -42,6 +43,13 @@ def str3(request):
         'title': 'Str3',
     }
     return render(request, 'main/str3.html', context=context)
+
+def curriculum(request):
+    context = {
+        'menu': menu,
+        'title': 'Резюме',
+    }
+    return render(request, 'main/curriculum.html', context=context)
 
 
 
