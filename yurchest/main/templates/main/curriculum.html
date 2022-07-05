@@ -2,12 +2,11 @@
   
 {% block content %}
 {% load static %} 
-
 	
-			<div>
+			<div class="info">
 				<table cellpadding="20">
 					<tr>
-						<td><img src="{% static 'main/media/yuriy.jpg' %}" class="rounded-circle" alt="Cinque Terre" width="200" border></td>
+						<td><img src="{% static 'main/media/yuriy.jpg' %}" class="avatar" alt="Cinque Terre" border></td>
 						<td valign="top">
 							<h4>Черемных Юрий Алексеевич</h4>
 							<p> <em>Программист</em> </p>
@@ -33,7 +32,51 @@
 			<div>
 				<hr class="mt-2 mb-3"/>
 				<h3>Опыт работы</h3>
+				<table class="table">
+					<tr>
+						<th>Компания</th>
+						<th>Должность</th>
+						<th>Год</th>
+					</tr>
+					<tr>
+						<td>"НПК "СПП"</td>
+						<td>Техник 1 категории</td>
+						<td>2021 - н.в</td>
+					</tr>
+				</table>
 			</div>
+
+			<div class="contact">
+				<hr class="mt-2 mb-3"/>
+				<h3>Связаться со мной</h3>
+				<form action="">
+					<div class="form-outline">
+					<label for="name">Ваше имя</label>
+					<input type="text" class="form-control"
+					placeholder="Введите ваше имя">
+
+					</div>
+					
+					<label for="email">Ваше e-mail</label>
+					<input type="email" id="email" class="form-control"
+					placeholder="Введите ваше e-mail">
+
+					<label class="form-label" for="form6Example7">Additional information</label>
+					  <div class="form-outline mb-4">
+					<textarea class="form-control" id="form6Example7" rows="4"></textarea>
+					
+					 </div>
+					
+
+
+				<button type="submit" class="btn btn-primary btn-block mb-4">Send</button>
+					 <br>
+					<br>
+					
+					
+
+				</form>
+			</di v>
 
 	
 
