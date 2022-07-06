@@ -1,99 +1,141 @@
 {% extends 'main/base.html' %}
-  
+
 {% block content %}
-{% load static %} 
-	
-			<div class="info">
-				<table cellpadding="20">
-					<tr>
-						<td><img src="{% static 'main/media/yuriy.jpg' %}" class="avatar" alt="Cinque Terre" border></td>
-						<td valign="top">
-							<h4>Черемных Юрий Алексеевич</h4>
-							<p> <em>Программист</em> </p>
-							
-				
-							<ul>
-								<li><a href="https://t.me/yurchest">Telegram</a></li>
-								<li><a href="https://vk.com/yura_cher">Вконтакте</a></li>
-								<li><a href="https://github.com/yurchest">Github</a></li>
-								<li><a href="https://instagram.com/yurchest">Instagram</a></li>
-							</ul>
-						</td>
-						
-					</tr>
-				</table>
-			</div>
+{% load static %}
 
-			<div>
-				
-	
+<div class="info">
+    <table cellpadding="20">
+        <tr>
+            <td><img src="{% static 'main/media/yuriy.jpg' %}" class="avatar" alt="Cinque Terre" border></td>
+            <td valign="top">
+                <h4>Черемных Юрий Алексеевич</h4>
+                <h7>Дата рождения: 15.02.2002 (20 лет)</h7>
+                <h6>Образование:</h6>
+                <h7>НИУ "МЭИ" (Управление и информатика в технических системах)</h7>
 
-			</div>
-			<div>
-				<hr class="mt-2 mb-3"/>
-				<h3>Опыт работы</h3>
-				<table class="table">
-					<tr>
-						<th>Компания</th>
-						<th>Должность</th>
-						<th>Год</th>
-					</tr>
-					<tr>
-						<td>"НПК "СПП"</td>
-						<td>Техник 1 категории</td>
-						<td>2021 - н.в</td>
-					</tr>
-				</table>
-			</div>
-
-			<div class="contact">
+                <p><em>2019 - н.в (4 курс)</em></p>
 
 
 
-				<hr class="mt-2 mb-3"/>
-				<h3>Связаться со мной</h3>
-				<p>Ваше сообщение будет отправлено мне в чат бот :)</p>
 
-				    <form method="POST" class="post-form">{% csrf_token %}
-        				{{ form.as_p }}
-        				<button type="submit" class="btn btn-primary btn-block mb-4">Send</button>
-    				</form>
-    				{% if messages %}
-					<ul class="messages">
-					    {% for message in messages %}
-					    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-					    {% endfor %}
-					</ul>
-					{% endif %}
-			<!--
-				<form action="">
-					<div class="form-outline">
-					<label for="name">Ваше имя</label>
-					<input type="text" class="form-control"
-					placeholder="Введите ваше имя">
-
-					</div>
-					
-					<label for="email">Ваше e-mail</label>
-					<input type="email" id="email" class="form-control"
-					placeholder="Введите ваше e-mail">
-
-					<label class="form-label" for="form6Example7">Additional information</label>
-					  <div class="form-outline mb-4">
-					<textarea class="form-control" id="form6Example7" rows="4"></textarea>
-					
-					 </div>
-					
+                <ul>
+                    <li><a href="https://t.me/yurchest" target="_blank">Telegram</a></li>
+                    <li><a href="https://vk.com/yura_cher" target="_blank">Вконтакте</a></li>
+                    <li><a href="https://github.com/yurchest" target="_blank">Github</a></li>
+                    <li><a href="https://instagram.com/yurchest" target="_blank">Instagram</a></li>
+                </ul>
 
 
-				<button type="submit" class="btn btn-primary btn-block mb-4">Send</button>
-					 <br>
-					<br>
-					
-				</form>
-			-->
-			</div>
 
-	
+            </td>
+            <td>
+                    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <p
+                {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}
+        </p>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+            </td>
+
+        </tr>
+    </table>
+</div>
+
+<hr class="mt-2 mb-3"/>
+<div class="about_myself">
+    <h3>О себе</h3>
+    <p>Если вы читаете данное предложение, вас явно заинтересовала моя деятельность. <br>Давайте я расскажу о себе
+        немного
+        больше. <br>Я программсит, который любит свое дело и который готов предоставить свои умения и навыки в
+        разработке.</p>
+</div>
+<hr>
+<div class="skills">
+    <h3>Навыки и умения</h3>
+    <li>Языки программирования: Python (ООП, pip ...), C++, JavaScript, Html, CSS, sh</li>
+    <li>Умения работать с системой контроля версий GIT</li>
+    <li>Основы работы с Django (Сайт же как-то соорудил :) )</li>
+    <li>Представление о протоколах HTTP, TCP/IP, DNS-серверах, маршрутизации</li>
+    <li>Знания в области реляционных баз данных (написание SQL запросов)</li>
+    <li>Знание технического Английского</li>
+</div>
+<hr>
+<div class="last_projects">
+    <h3>Прошлые проекты</h3>
+    <li>Программное обеспечение для управление пикосекудным лазерным дальномером (РОСКОСМОС, ГЛОНАСС)<a
+            class="links_proj"
+            href="https://github.com/yurchest/ControlLaserLin" target="_blank">Github</a>
+    </li>
+    <li>Программное обеспечение для анализа диаграммы направленности лазерного излучения <a class="links_proj"
+                                                                                            href="https://github.com/yurchest/ImageAnalyzer"
+                                                                                            target="_blank">Github</a>
+        <a  href="{% static 'main/IMG_Analyzer.docx' %}" target="_blank">Документация к ПО</a></li>
+    <br>
+</div>
+<div>
+    <hr class="mt-2 mb-3"/>
+    <h3>Опыт работы</h3>
+    <table class="table">
+        <tr>
+            <th>Компания</th>
+            <th>Должность</th>
+            <th>Год</th>
+            <td></td>
+        </tr>
+        <tr>
+            <td>"Нау́чно-произво́дственная корпора́ция «Систе́мы прецизио́нного приборострое́ния»</td>
+            <td>Техник 1 категории</td>
+            <td>2021 - н.в</td>
+            <td><img src="{% static 'main/media/roskosmos.png' %}" alt="picture (^_^)"></td>
+        </tr>
+    </table>
+</div>
+
+<div class="contact">
+
+
+    <hr class="mt-2 mb-3"/>
+    <h3>Связаться со мной</h3>
+
+    <p>Ваше сообщение будет отправлено мне в телеграмме :)</p>
+
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary btn-block mb-4">Send</button>
+    </form>
+
+    <!--
+        <form action="">
+            <div class="form-outline">
+            <label for="name">Ваше имя</label>
+            <input type="text" class="form-control"
+            placeholder="Введите ваше имя">
+
+            </div>
+
+            <label for="email">Ваше e-mail</label>
+            <input type="email" id="email" class="form-control"
+            placeholder="Введите ваше e-mail">
+
+            <label class="form-label" for="form6Example7">Additional information</label>
+              <div class="form-outline mb-4">
+            <textarea class="form-control" id="form6Example7" rows="4"></textarea>
+
+             </div>
+
+
+
+        <button type="submit" class="btn btn-primary btn-block mb-4">Send</button>
+             <br>
+            <br>
+
+        </form>
+    -->
+</div>
+
 
 {% endblock %}

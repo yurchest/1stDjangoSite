@@ -59,7 +59,7 @@ def curriculum(request):
             telegram_message = \
             f"Name: {message.name} \nEmail: {message.email} \nText: {message.text}  \nDate/Time: {formatedDate}"
             send_message(telegram_message)
-            messages.success(request, 'Сообщение успешно отправлено')
+            messages.success(request, 'Сообщение успешно отправлено. Надеюсь оно до меня дойдет (^_^)')
     else:
         form = ContactFormCv()
 
@@ -69,7 +69,6 @@ def curriculum(request):
         'form' : form,
     }
     return render(request, 'main/curriculum.html', context=context)
-
 
 
 def about(request):

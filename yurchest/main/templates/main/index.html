@@ -1,16 +1,24 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-
+{% load static %}
 <div class="container">
-    <h1>Статьи : </h1>
-    <ul>
-            {% for art in articles %}
-                <h2>{{art.title}}</h2>
-                <p>{{art.content}}</p>
-                <hr>
-            {% endfor %}
-    </ul>
+    <br><br>
+    <div class="about_site">
+        <h5>Всем, привет. Меня зовут Юрий. Я начинающий программист. Это мой сайт, написанный с использованием фрэймворка
+            Django. Это главная страница.</h5>
+
+        <h5>Если вам интересно посмотреть мое резюме или связаться со мной, перейдите на вкладку <a href="{% url 'cv' %}">Резюме</a>.</h5>
+        <h5>Если вы еще не перешли к моему резюме, можете наблюдать мою фотографию справа :)</h5>
+    </div>
+    <div class="about_site2">
+        <img src="{% static 'main/media/yuriy_index.jpg' %}" class="avatar2" alt="Cinque Terre" border>
+
+    </div>
+    <div class="about_site">
+
+
+    </div>
 </div>
 
 {% endblock %}
