@@ -1,0 +1,18 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <h1>Сообщения : </h1>
+    <ul>
+            {% for message in messages %}
+                <h2>Имя:  {{message.name}}</h2>
+                <p>Email:  {{message.email}}</p>
+                <p>Сообщение:  {{message.text}}</p>
+                <p>Дата: {{message.published_date}}</p>
+                <hr>
+            {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

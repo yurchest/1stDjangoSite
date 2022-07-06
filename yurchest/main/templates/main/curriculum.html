@@ -47,8 +47,25 @@
 			</div>
 
 			<div class="contact">
+
+
+
 				<hr class="mt-2 mb-3"/>
 				<h3>Связаться со мной</h3>
+				<p>Ваше сообщение будет отправлено мне в чат бот :)</p>
+
+				    <form method="POST" class="post-form">{% csrf_token %}
+        				{{ form.as_p }}
+        				<button type="submit" class="btn btn-primary btn-block mb-4">Send</button>
+    				</form>
+    				{% if messages %}
+					<ul class="messages">
+					    {% for message in messages %}
+					    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+					    {% endfor %}
+					</ul>
+					{% endif %}
+			<!--
 				<form action="">
 					<div class="form-outline">
 					<label for="name">Ваше имя</label>
@@ -73,10 +90,9 @@
 					 <br>
 					<br>
 					
-					
-
 				</form>
-			</di v>
+			-->
+			</div>
 
 	
 

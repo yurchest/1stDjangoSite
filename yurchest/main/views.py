@@ -1,6 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound
-from .models import Article,Comment
+from .models import Article,Comment,Contact
+from .forms import ContactFormCv
+from django.contrib import messages
+from .telegram import send_message
+
 
 menu = [
     {'title': "Главная", 'url_name': 'home'},
@@ -24,11 +28,13 @@ def index(request):
 
 
 def str1(request):
+    messages = Contact.objects.all()
     context = {
         'menu': menu,
-        'title': 'Str1',
+        'messages': messages,
+        'title': 'Обратная связь',
     }
-    return render(request, 'main/str1.html', context=context)
+    return render(request, 'main/messages.html', context=context)
 
 def str2(request):
     context = {
@@ -45,9 +51,22 @@ def str3(request):
     return render(request, 'main/str3.html', context=context)
 
 def curriculum(request):
+    if request.method == "POST":
+        form = ContactFormCv(request.POST)
+        if form.is_valid():
+            message = form.save()
+            formatedDate = message.published_date.strftime("%Y-%m-%d %H:%M:%S")
+            telegram_message = \
+            f"Name: {message.name} \nEmail: {message.email} \nText: {message.text}  \nDate/Time: {formatedDate}"
+            send_message(telegram_message)
+            messages.success(request, 'Сообщение успешно отправлено')
+    else:
+        form = ContactFormCv()
+
     context = {
         'menu': menu,
         'title': 'Резюме',
+        'form' : form,
     }
     return render(request, 'main/curriculum.html', context=context)
 

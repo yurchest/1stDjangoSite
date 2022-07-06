@@ -13,3 +13,12 @@ class Comment(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
     author_name = models.CharField('имя автора', max_length=50)
     comment_text = models.CharField('текст комментария',  max_length=60)
+
+class Contact(models.Model):
+    name = models.CharField('Ваше имя:',max_length=50)
+    email = models.CharField('Ваш e-mail:',max_length=100)
+    text = models.TextField(max_length=255)
+    published_date = models.DateTimeField('дата сообщения',auto_now_add=True)
+
+    def __str__(self):
+        return self.name
