@@ -17,7 +17,7 @@ class Comment(models.Model):
 class Contact(models.Model):
     name = models.CharField('Ваше имя:',max_length=50)
     email = models.CharField('Ваш e-mail:',max_length=100)
-    text = models.TextField(max_length=255)
+    text = models.TextField('Сообщение', max_length=255)
     published_date = models.DateTimeField('дата сообщения',auto_now_add=True)
 
     def __str__(self):

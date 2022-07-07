@@ -65,3 +65,33 @@ body {
     color: 	#32CD32;
 
 }
+
+.message p {
+    margin-bottom: 5px;
+}
+
+.message p em {
+    color: grey;
+}
+
+.block_messages {
+    width: 50%;
+}
+
+.message {
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    background-color: rgba(164, 190, 255, .3);
+    border-radius: 20px;
+}
+
+.contact {
+    width: 50%;
+}
+
+.contact input {
+    width: 50%;
+}
+
+.contact textarea {
+}
