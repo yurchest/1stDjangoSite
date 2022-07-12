@@ -9,21 +9,12 @@ from .telegram import send_message
 from .models import Article,Comment,Contact
 from .forms import ContactFormCv, UserRegistrationForm
 
-menu = [
-    {'title': "Главная", 'url_name': 'home'},
-    {'title': "Str1", 'url_name': 'str1'},
-    {'title': "Str2", 'url_name': 'str2'},
-    {'title': "Str3", 'url_name': 'str3'},
-    {'title': "О сайте", 'url_name': 'about'},
-    {'title': "Резюме", 'url_name': 'cv'},
 
-]
 
 
 def index(request):
     articles = Article.objects.all()
     context = {
-        'menu': menu,
         'articles': articles,
         'title': 'Главная страница',
     }
@@ -34,7 +25,6 @@ def index(request):
 def str1(request):
     messages = Contact.objects.all()
     context = {
-        'menu': menu,
         'messages': messages,
         'title': 'Обратная связь',
     }
@@ -42,14 +32,12 @@ def str1(request):
 
 def str2(request):
     context = {
-        'menu': menu,
         'title': 'Str2',
     }
     return render(request, 'main/str2.html', context=context)
 
 def str3(request):
     context = {
-        'menu': menu,
         'title': 'Str3',
     }
     return render(request, 'main/str3.html', context=context)
@@ -71,7 +59,6 @@ def curriculum(request):
     request.session['num_visits'] = num_visits+1
 
     context = {
-        'menu': menu,
         'title': 'Резюме',
         'form' : form,
         'num_visits':num_visits,
@@ -84,15 +71,19 @@ def curriculum(request):
 
 def about(request):
     context = {
-        'menu': menu,
         'title': 'О сайте',
     }
     return render(request, 'main/about.html', context=context)
 
 
 def register(request):
+    
     if request.method == 'POST':
         user_form = UserRegistrationForm(request.POST)
+        context = {
+        'title': 'О сайте',
+        'user_form': user_form,
+    }
         if user_form.is_valid():
             # Create a new user object but avoid saving it yet
             new_user = user_form.save(commit=False)
@@ -102,10 +93,15 @@ def register(request):
             # Save the User object
             new_user.save()
             new_user.groups.add(Group.objects.get(name='SiteUsers'))
-            return render(request, 'registration/register_done.html', {'new_user': new_user})
+            return render(request, 'registration/register_done.html', context)
     else:
         user_form = UserRegistrationForm()
-    return render(request, 'registration/register.html', {'user_form': user_form})
+
+    context = {
+        'title': 'О сайте',
+        'user_form': user_form,
+    }
+    return render(request, 'registration/register.html', context)
 
 def pageNotFound(request, exception):
     return HttpResponseNotFound('<h1> OOOPS...  Страница не найдена  :( </h1>')

@@ -95,3 +95,16 @@ body {
 
 .contact textarea {
 }
+
+.login_div {
+    background-color: rgba(164, 190, 255, .3);
+    border-radius: 20px;
+    padding: 30px 50px;
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 1%;
+}
+.login_div td {
+    padding: 1px 20px;
+}
+
