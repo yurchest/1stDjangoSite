@@ -10,6 +10,7 @@ urlpatterns = [
     path('str3', str3, name='str3'),
     path('about/', about, name='about'),
     path('curriculum', curriculum, name='cv'),
+    path('register/', register, name='register'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

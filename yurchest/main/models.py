@@ -20,5 +20,8 @@ class Contact(models.Model):
     text = models.TextField('Сообщение', max_length=255)
     published_date = models.DateTimeField('дата сообщения',auto_now_add=True)
 
+    class Meta:
+        permissions = (("can_see_messages", "You can see list messages"),)
+
     def __str__(self):
         return self.name

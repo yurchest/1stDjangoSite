@@ -14,18 +14,33 @@
 <div class="container">
 
 
-    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-                <svg class="bi me-2" width="40" height="32"><use xlink:href="{% url 'home' %}"></use></svg>
+    <header>
+        <nav class="navbar navbar-dark navbar-fixed-top border-bottom">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 text-dark text-decoration-none">
+                <svg class="bi me-2" width="40" height="32"><use link:href="{% url 'home' %}"></use></svg>
                 <span class="fs-4">Yurchest site</span>
             </a>
-            <ul class="nav nav-pills">
+            <ul class="nav nav-pills justify-content-center">
                 {% for m in menu %} {% url m.url_name as url %}
 				 
                     <li class="nav-item"><a class="nav-link {% if request.path == url %}active{% endif %}" href="{{ url }}">{{ m.title }}</a></li>
 					
                 {%  endfor %}
+                
             </ul>
+
+            <ul class="nav nav-pills nav justify-content-end">
+                {% if user.is_authenticated %}
+                    <li class="nav-item nav-link">User: {{ user.get_username }}</li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'logout'%}?next={{request.path}}">Logout</a></li> 
+                {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'login'%}?next={{request.path}}">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'register'%}?next={{request.path}}">Register</a></li>
+                {% endif %} 
+
+            </ul>
+            </nav>
+
     </header>
 
 

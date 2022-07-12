@@ -1,10 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound
-from .models import Article,Comment,Contact
-from .forms import ContactFormCv
 from django.contrib import messages
-from .telegram import send_message
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import permission_required
+from django.contrib.auth.models import User, Group
 
+from .telegram import send_message
+from .models import Article,Comment,Contact
+from .forms import ContactFormCv, UserRegistrationForm
 
 menu = [
     {'title': "Главная", 'url_name': 'home'},
@@ -26,7 +29,8 @@ def index(request):
     }
     return render(request, 'main/index.html', context=context)
 
-
+#@login_required
+@permission_required('main.can_see_messages')
 def str1(request):
     messages = Contact.objects.all()
     context = {
@@ -63,11 +67,18 @@ def curriculum(request):
     else:
         form = ContactFormCv()
 
+    num_visits=request.session.get('num_visits', 0)
+    request.session['num_visits'] = num_visits+1
+
     context = {
         'menu': menu,
         'title': 'Резюме',
         'form' : form,
+        'num_visits':num_visits,
     }
+
+    
+
     return render(request, 'main/curriculum.html', context=context)
 
 
@@ -77,6 +88,24 @@ def about(request):
         'title': 'О сайте',
     }
     return render(request, 'main/about.html', context=context)
+
+
+def register(request):
+    if request.method == 'POST':
+        user_form = UserRegistrationForm(request.POST)
+        if user_form.is_valid():
+            # Create a new user object but avoid saving it yet
+            new_user = user_form.save(commit=False)
+            # Set the chosen password
+            new_user.set_password(user_form.cleaned_data['password'])
+
+            # Save the User object
+            new_user.save()
+            new_user.groups.add(Group.objects.get(name='SiteUsers'))
+            return render(request, 'registration/register_done.html', {'new_user': new_user})
+    else:
+        user_form = UserRegistrationForm()
+    return render(request, 'registration/register.html', {'user_form': user_form})
 
 def pageNotFound(request, exception):
     return HttpResponseNotFound('<h1> OOOPS...  Страница не найдена  :( </h1>')
