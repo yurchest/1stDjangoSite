@@ -1,0 +1,22 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <h3>Новости : </h3>
+    <br>
+    <div class="block_messages">
+        {% for one_news in news %}
+        <div class="message">
+            <a href="{{one_news.link}}" target="_blank">{{one_news.content}}</a>
+            <!-- <p>Content: {{one_news.content}}</p>
+            <p>URL: {{one_news.link}}</p> -->
+            <p><em>Дата парсинга: {{one_news.time_create}}</em></p>
+        </div>
+        <br>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}

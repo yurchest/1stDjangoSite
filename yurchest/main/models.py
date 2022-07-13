@@ -25,3 +25,29 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class VisitNumber(models.Model):
+    count=models.IntegerField(verbose_name='Всего просмотров резюме',default=0)
+    class Meta:
+        verbose_name = 'Всего просмотров резюме'
+        verbose_name_plural = verbose_name
+    def __str__(self):
+        return str(self.count)
+
+class Userip(models.Model):
+    ip=models.CharField(verbose_name='Айпи адрес',max_length=30)    #айпи адрес
+    count=models.IntegerField(verbose_name='Визиты',default=0) # Ip посещения
+    class Meta:
+        verbose_name = 'Доступ к информации о пользователе'
+        verbose_name_plural = verbose_name
+    def __str__(self):
+        return self.ip
+
+class News(models.Model):
+    content = models.TextField('текст новости')
+    time_create = models.DateTimeField('дата загрузки с сайта', auto_now_add=True)
+    link = models.URLField('URL',max_length = 255)
+
+    def __str__(self):
+        return self.content
