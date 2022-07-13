@@ -27,7 +27,6 @@ body {
 
 .table {
 	width: 60%;
-
 }
 
 .table td {
@@ -102,10 +101,14 @@ body {
     border-radius: 20px;
     padding: 30px 50px;
     width: 50%;
-    margin: 0 auto;
-    margin-bottom: 1%;
+    margin: 0 auto 1%;
 }
 .login_div td {
     padding: 1px 20px;
+}
+
+.login_div button {
+    padding: 10px 20px;
+    margin-left: 5%;
 }
 

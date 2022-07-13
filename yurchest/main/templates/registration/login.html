@@ -4,15 +4,15 @@
 <br>
 <div class="login_div">
   {% if form.errors %}
-    <p>Your username and password didn't match. Please try again.</p>
+    <h5>Неправильный логин или пароль</h5>
   {% endif %}
 
   {% if next %}
     {% if user.is_authenticated %}
-      <p>Your account doesn't have access to this page. To proceed,
-      please login with an account that has access.</p>
+      <h5>Вы не имеете прав для просмотра данной страницы</h5>
     {% else %}
-      <p>Please login to see this page.</p>
+      <h5>Войдите чтобы посмотреть данную страницу.</h5>
+        <br>
     {% endif %}
   {% endif %}
 
@@ -30,8 +30,8 @@
     <td>{{ form.password }}</td>
   </tr>
   </table>
-
-  <input type="submit" value="login" />
+      <br>
+  <button type="submit" class="btn btn-primary btn-block mb-4">Войти</button>
   <input type="hidden" name="next" value="{{ next }}" />
   </form>
 
