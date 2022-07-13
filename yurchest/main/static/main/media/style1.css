@@ -107,6 +107,10 @@ body {
     padding: 1px 20px;
 }
 
+.login_div input {
+
+}
+
 .login_div button {
     padding: 10px 20px;
     margin-left: 5%;

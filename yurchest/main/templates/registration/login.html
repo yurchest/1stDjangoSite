@@ -2,7 +2,7 @@
 
 {% block content %}
 <br>
-<div class="login_div">
+<div class="login_div ">
   {% if form.errors %}
     <h5>Неправильный логин или пароль</h5>
   {% endif %}
@@ -16,7 +16,7 @@
     {% endif %}
   {% endif %}
 
-  <form method="post" action="{% url 'login' %}">
+  <form class="form-inline" method="post" action="{% url 'login' %}">
   {% csrf_token %}
   <table>
 
@@ -38,5 +38,8 @@
   {# Assumes you setup the password_reset view in your URLconf #}
   <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
 </div>
+
+
+
 
 {% endblock %}
