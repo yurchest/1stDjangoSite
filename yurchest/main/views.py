@@ -8,11 +8,15 @@ from django.views.generic import TemplateView, ListView, View
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.views.generic.edit import FormView
 
+from .serializers import NewsSerializer
 from .telegram import send_message
 from .models import Article, Comment, Contact, VisitNumber, News
 from .forms import ContactFormCv, UserRegistrationForm
 from .stats_visit import change_info
 from .parse_news_yandex import parse
+
+from rest_framework.views import APIView
+from rest_framework import generics
 
 
 class Index(TemplateView):
@@ -108,6 +112,12 @@ def register(request):
         'user_form': user_form,
     }
     return render(request, 'registration/register.html', context)
+
+
+class NewsAPIView(generics.ListCreateAPIView):
+    queryset = News.objects.all()
+    serializer_class = NewsSerializer
+
 
 
 def pageNotFound(request, exception):

@@ -45,6 +45,7 @@ def parse(url):
     # news_content = soup.find_all('div', class_='list-item__content')
     news_content = soup.find_all('a', class_='list-item__title color-font-hover-only')
     print("News have been Downloaded")
+    # print(news_content)
     for news in news_content:
         href = news.get('href')
         content  = news.text
@@ -55,7 +56,7 @@ def parse(url):
 
 
 def thread_func():
-        parse(url='https://ria.ru/20220101/')
+        parse(url='https://ria.ru/lenta/')
         threading.Timer(30, thread_func).start()
 
 thread_func()

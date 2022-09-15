@@ -12,6 +12,7 @@ urlpatterns = [
     path('about/', about, name='about'),
     path('curriculum', Curriculum.as_view(), name='cv'),
     path('register/', register, name='register'),
+    path('api/newslist/', NewsAPIView.as_view()),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
