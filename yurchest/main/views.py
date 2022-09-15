@@ -16,7 +16,7 @@ from .stats_visit import change_info
 from .parse_news_yandex import parse
 
 from rest_framework.views import APIView
-from rest_framework import generics
+from rest_framework import generics, viewsets
 
 
 class Index(TemplateView):
@@ -114,10 +114,9 @@ def register(request):
     return render(request, 'registration/register.html', context)
 
 
-class NewsAPIView(generics.ListCreateAPIView):
+class NewsAPIViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = News.objects.all()
     serializer_class = NewsSerializer
-
 
 
 def pageNotFound(request, exception):

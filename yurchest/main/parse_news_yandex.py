@@ -59,5 +59,5 @@ def thread_func():
         parse(url='https://ria.ru/lenta/')
         threading.Timer(30, thread_func).start()
 
-thread_func()
+# thread_func()
 # main()
